@@ -36,7 +36,7 @@ This project demonstrates a microservices architecture using an API Gateway buil
 ### Clone the Repository
 
 ```
-git clone https://github.com/your-username/microservices-project.git
+git clone https://github.com/AkselRivera/grpc-microservices.git
 cd microservices-project
 ```
 
