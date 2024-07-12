@@ -1,0 +1,48 @@
+version: '3'
+services:
+  apigateway:
+    build:
+      context: apigateway/
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "50051:50051"
+    networks:
+      - app-network
+
+  product-service:
+    build:
+      context: ./
+      dockerfile: /product-service/Dockerfile
+    ports:
+      - "50052:50052"
+    networks:
+      - app-network
+
+  order-service:
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    ports:
+      - "50055:50055"
+    networks:
+      - app-network
+    
+
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "50056:50056"
+    networks:
+      - app-network
+    environment:
+      - JWT_SECRET="OJfn/LSLYZZ94PZksfhmMn5aVvieck24Rd4L6sNH7Rk="
+
+    
+  
+
+networks:
+  app-network:
+    driver: bridge
