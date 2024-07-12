@@ -18,11 +18,11 @@ func main() {
 
 	lis, err := net.Listen("tcp", ":50055")
 	if err != nil {
-		log.Fatalf("Error al escuchar: %v", err)
+		log.Fatalf("Connection error: %v", err)
 	}
 
-	log.Println("Servidor gRPC escuchando en :50055")
+	log.Println("gRPC server listening on :50055")
 	if err := s.Serve(lis); err != nil {
-		log.Fatalf("Error al servir: %v", err)
+		log.Fatalf("Connection error: %v", err)
 	}
 }

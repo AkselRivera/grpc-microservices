@@ -18,7 +18,7 @@ import (
 
 func main() {
 
-	// Configurar servidor gRPC
+	// Connfiguring gRPC server
 	grpcServer := grpc.NewServer()
 
 	pb.RegisterAuthServiceServer(grpcServer, &pb.UnimplementedAuthServiceServer{})
@@ -30,7 +30,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	// Configurar servidor REST
+	// Configuring REST server
 	app := fiber.New()
 	// Enable logger
 	app.Use(logger.New())

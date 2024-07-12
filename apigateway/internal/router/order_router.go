@@ -8,7 +8,6 @@ import (
 )
 
 func OrdersRouter(router fiber.Router) {
-	// Implementar manejo de solicitudes HTTP
 	router.Get("/", auth.PrivateRoute, handlers.ListOrders)
 	router.Get("/:id", auth.PrivateRoute, handlers.GetOrder)
 
