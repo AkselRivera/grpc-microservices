@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package product;
+
+option go_package = "/proto";
+
+service ProductService {
+    rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
+    rpc ListProducts(ListProductsRequest) returns (GetProductsResponse) {}
+
+    rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
+    rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
+
+    rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse) {}   
+
+    rpc HandleProductStock(HandleProductStockRequest) returns (HandleProductStockResponse) {}
+}
+
+enum EnumAction {
+    UNKNOWN = 0;
+    ADD = 1;
+    SUBTRACT = 2;
+    CLEAR = 3;
+}
+
+enum EnumProductIsActive {
+    IS_UNKNOWN = 0;
+    ACTIVE = 1;
+    INACTIVE = 2;
+}
+
+message Product {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    double price = 4;
+    int32 quantity = 5;
+    EnumProductIsActive is_active = 6;
+}
+
+message GetProductRequest {
+    string id = 1;
+}
+message GetProductResponse {
+    Product product = 1;
+}
+
+message ListProductsRequest {}
+message GetProductsResponse {
+    repeated Product products = 1;
+}
+
+message CreateProductRequest {
+    string name = 1;
+    string description = 2;
+    double price = 3;
+    int32 quantity = 4;
+}
+message CreateProductResponse {
+    Product product = 1;
+}
+
+message UpdateProductRequest {
+    Product product = 1;
+}
+message UpdateProductResponse {
+    Product product = 1;
+}
+
+message DeleteProductRequest {
+    string id = 1;
+}
+message DeleteProductResponse {
+    bool success = 1;
+}
+
+message HandleProductStockRequest {
+    string id = 1;
+    int32 quantity = 2;
+    EnumAction action = 3;
+}
+message HandleProductStockResponse {
+    bool success = 1;
+}
